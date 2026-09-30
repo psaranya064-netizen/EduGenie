@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduGenie | Learn Smarter</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef2ff, #f8f5ff, #e8f0ff);
+            color: #1e2340;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 75px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 25px rgba(80, 70, 150, 0.08);
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #5b5ce2;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555b78;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #635bff;
+        }
+
+        .login-btn {
+            padding: 11px 22px;
+            border-radius: 25px;
+            background: #635bff;
+            color: white !important;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: calc(100vh - 75px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            gap: 50px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 18px;
+            border-radius: 30px;
+            background: rgba(99, 91, 255, 0.1);
+            color: #635bff;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 6vw, 72px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #635bff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #656b85;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 15px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            color: white;
+            background: linear-gradient(135deg, #635bff, #8b5cf6);
+            box-shadow: 0 12px 25px rgba(99, 91, 255, 0.3);
+        }
+
+        .secondary-btn {
+            color: #635bff;
+            background: white;
+            border: 1px solid #dddafa;
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* AI CARD */
+        .hero-card {
+            width: 360px;
+            min-height: 420px;
+            border-radius: 35px;
+            padding: 30px;
+
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+
+            box-shadow: 0 25px 60px rgba(77, 65, 160, 0.18);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+        }
+
+        .robot {
+            width: 130px;
+            height: 130px;
+            border-radius: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 70px;
+
+            background: linear-gradient(135deg, #ddd9ff, #f0e7ff);
+            box-shadow: 0 15px 35px rgba(99, 91, 255, 0.2);
+
+            margin-bottom: 25px;
+
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .hero-card h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .hero-card p {
+            color: #747991;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feature {
+            padding: 8px 13px;
+            border-radius: 20px;
+            background: white;
+            font-size: 13px;
+            font-weight: 600;
+            color: #62677e;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 45px;
+            }
+
+            .buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-card {
+                width: 90%;
+                max-width: 360px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <div class="logo">
+            🎓 Edu<span>Genie</span>
+        </div>
+
+        <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/subjects">Subjects</a>
+    <a href="/quiz">Quiz</a>
+    <a href="/ai-tutor">AI Tutor</a>
+    <a href="/login" class="login-btn">Login</a>
+</div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✨ AI-Powered Learning Assistant
+            </div>
+
+            <h1>
+                Learn Smarter.<br>
+                <span>Grow Faster.</span> 🚀
+            </h1>
+
+            <p>
+                Your personal AI-powered education assistant for
+                personalized learning, smart quizzes, study materials
+                and progress tracking.
+            </p>
+
+            <div class="buttons">
+
+                <a href="http://127.0.0.1:5000/subjects" class="primary-btn">
+                    Start Learning →
+                </a>
+
+                <a href="http://127.0.0.1:5000/subjects" class="secondary-btn">
+                    Explore Features
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI CARD -->
+        <div class="hero-card">
+
+            <div class="robot">
+                🤖
+            </div>
+
+            <h2>
+                Meet EduGenie
+            </h2>
+
+            <p>
+                Your smart study companion that helps you
+                learn, practice and improve every day.
+            </p>
+
+            <div class="features">
+
+                <a href="/ai-tutor" class="feature">
+                    🤖 AI Tutor
+                </a>
+
+                <a href="/quiz" class="feature">
+                    📝 Smart Quiz
+                </a>
+
+                <a href="/subjects" class="feature">
+                    📚 Study
+                </a>
+
+                <a href="/progress" class="feature">
+                    📊 Progress
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
