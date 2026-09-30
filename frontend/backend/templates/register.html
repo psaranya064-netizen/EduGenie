@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenie | Register</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #eef4ff, #f8f3ff);
+        }
+
+        .register-box {
+            width: 400px;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-box">
+
+        <h1>EduGenie</h1>
+
+        <p class="subtitle">Create your learning account</p>
+
+        <form id="registerForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                required
+            >
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+    <script>
+
+        document.getElementById("registerForm").addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            });
+
+            const result = await response.json();
+
+            document.getElementById("message").textContent = result.message;
+
+        });
+
+    </script>
+
+</body>
+</html>
