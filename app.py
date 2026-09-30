@@ -10,6 +10,23 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 import sqlite3
 
 app = Flask(__name__)
+def init_db():
+    connection = get_db_connection()
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
+
+init_db()
 
 
 # ---------------- DATABASE ----------------
