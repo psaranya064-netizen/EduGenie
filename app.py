@@ -1,5 +1,6 @@
 from flask import Flask, render_template,jsonify, request
 import os
+import sqlite3
 
 from dotenv import load_dotenv
 from google import genai
@@ -7,9 +8,17 @@ from google import genai
 load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-import sqlite3
+
 
 app = Flask(__name__)
+
+
+# ---------------- DATABASE ----------------
+
+def get_db_connection():
+    connection = sqlite3.connect("edugenie.db")
+    connection.row_factory = sqlite3.Row
+    return connection
 def init_db():
     connection = get_db_connection()
 
@@ -27,14 +36,6 @@ def init_db():
 
 
 init_db()
-
-
-# ---------------- DATABASE ----------------
-
-def get_db_connection():
-    connection = sqlite3.connect("edugenie.db")
-    connection.row_factory = sqlite3.Row
-    return connection
 
 
 # ---------------- HOME ----------------
