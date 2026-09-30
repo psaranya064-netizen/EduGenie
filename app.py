@@ -30,6 +30,10 @@ def init_db():
             password TEXT NOT NULL
         )
     """)
+    connection.execute("""
+    INSERT OR IGNORE INTO users (name, email, password)
+    VALUES (?, ?, ?)
+""", ("EduGenie User", "psaranya064@gmail.com", "123456"))
 
     connection.commit()
     connection.close()
