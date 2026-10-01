@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EduGenie | Materials</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#eef4ff,#f8f3ff);
+    color:#26324a;
+}
+
+/* NAVBAR */
+
+nav{
+    height:75px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(255,255,255,.92);
+    box-shadow:0 5px 25px rgba(70,90,150,.10);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#5574d9;
+}
+
+.logo span{
+    color:#26324a;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#59657c;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#5574d9;
+}
+
+.profile{
+    background:#eef2ff;
+    padding:9px 15px;
+    border-radius:25px;
+}
+
+/* MAIN */
+
+.container{
+    width:86%;
+    max-width:1200px;
+    margin:40px auto 60px;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 17px;
+    border-radius:25px;
+    background:#e5ebff;
+    color:#5574d9;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#6685e8;
+}
+
+.hero p{
+    color:#7b8497;
+}
+
+/* SEARCH */
+
+.search-box{
+    max-width:650px;
+    margin:25px auto 40px;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 20px 16px 48px;
+    border:1px solid #e0e5f1;
+    border-radius:30px;
+    outline:none;
+    background:white;
+    font-size:15px;
+    box-shadow:0 8px 25px rgba(70,90,150,.07);
+}
+
+.search-icon{
+    position:absolute;
+    left:20px;
+    top:14px;
+    font-size:20px;
+}
+
+/* MATERIALS */
+
+.materials{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 8px 28px rgba(70,90,150,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:17px;
+    background:#eef2ff;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#818a9d;
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+    color:#8a92a3;
+    font-size:12px;
+}
+
+.view-btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    padding:11px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#6685e8,#8b75df);
+    color:white;
+    font-weight:700;
+    font-size:14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .materials{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:550px){
+
+    .container{
+        width:90%;
+    }
+
+    .hero h1{
+        font-size:31px;
+    }
+
+    .materials{
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        🎓 Edu<span>Genie</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="ai-tutor.html">AI Tutor</a>
+
+        <a href="#" class="profile">
+            👤 Student
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            📚 Smart Learning Library
+        </div>
+
+        <h1>
+            Explore <span>Study Materials</span>
+        </h1>
+
+        <p>
+            Learn concepts, revise topics and strengthen your knowledge.
+        </p>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <span class="search-icon">🔍</span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search study materials..."
+            onkeyup="searchMaterials()"
+        >
+
+    </div>
+
+
+    <!-- MATERIAL CARDS -->
+
+    <section class="materials" id="materialsList">
+
+
+        <div class="card material">
+
+            <div class="icon">🐍</div>
+
+            <h3>Python Programming</h3>
+
+            <p>
+                Learn Python fundamentals, variables,
+                conditions, loops, functions and lists.
+            </p>
+
+            <div class="meta">
+                <span>📄 Beginner</span>
+                <span>⏱ 2 Hours</span>
+            </div>
+
+            <a href="materials/python" class="view-btn">
+                View Material →
+            </a>
+
+        </div>
+
+
+        <div class="card material">
+
+            <div class="icon">💾</div>
+
+            <h3>SQL & Database</h3>
+
+            <p>
+                Understand SQL queries, tables,
+                database operations and CRUD concepts.
+            </p>
+
+            <div class="meta">
+                <span>📄 Beginner</span>
+                <span>⏱ 2.5 Hours</span>
+            </div>
+
+            <a href="/materials/sql" class="view-btn">
+                View Material →
+            </a>
+
+        </div>
+
+
+        <div class="card material">
+
+            <div class="icon">🤖</div>
+
+            <h3>Artificial Intelligence</h3>
+
+            <p>
+                Explore AI fundamentals, machine learning
+                and intelligent systems.
+            </p>
+
+            <div class="meta">
+                <span>📄 Intermediate</span>
+                <span>⏱ 3 Hours</span>
+            </div>
+
+            <a href="/materials/ai" class="view-btn">
+                View Material →
+            </a>
+
+        </div>
+
+
+        <div class="card material">
+
+            <div class="icon">🌐</div>
+
+            <h3>Web Development</h3>
+
+            <p>
+                Learn HTML, CSS and JavaScript
+                to build modern websites.
+            </p>
+
+            <div class="meta">
+                <span>📄 Beginner</span>
+                <span>⏱ 3 Hours</span>
+            </div>
+
+            <a href="/materials/web" class="view-btn">
+                View Material →
+            </a>
+
+        </div>
+
+
+        <div class="card material">
+
+            <div class="icon">☁️</div>
+
+            <h3>Cloud Computing</h3>
+
+            <p>
+                Understand cloud concepts,
+                services and modern cloud platforms.
+            </p>
+
+            <div class="meta">
+                <span>📄 Intermediate</span>
+                <span>⏱ 2 Hours</span>
+            </div>
+
+            <a href="/materials/cloud" class="view-btn">
+                View Material →
+            </a>
+
+        </div>
+
+
+        <div class="card material">
+
+            <div class="icon">🔐</div>
+
+            <h3>Cyber Security</h3>
+
+            <p>
+                Learn basic security concepts,
+                threats and protection techniques.
+            </p>
+
+            <div class="meta">
+                <span>📄 Beginner</span>
+                <span>⏱ 2 Hours</span>
+            </div>
+
+            <a href="/materials/cyber" class="view-btn">
+                View Material →
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function searchMaterials(){
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".material");
+
+    cards.forEach(function(card){
+
+        const text =
+            card.innerText.toLowerCase();
+
+        if(text.includes(search)){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

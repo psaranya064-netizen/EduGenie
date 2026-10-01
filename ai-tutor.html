@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EduGenie | AI Tutor</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#eef4ff,#f8f3ff);
+    color:#26324a;
+}
+
+/* NAVBAR */
+
+nav{
+    height:75px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 5px 25px rgba(70,90,150,.10);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#5574d9;
+}
+
+.logo span{
+    color:#26324a;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#59657c;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#5574d9;
+}
+
+.login{
+    background:linear-gradient(135deg,#6685e8,#8b75df);
+    color:white !important;
+    padding:11px 22px;
+    border-radius:25px;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:40px 20px 25px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    background:#e4ebff;
+    color:#5574d9;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#6685e8;
+}
+
+.hero p{
+    color:#737d91;
+}
+
+/* CHAT */
+
+.chat-container{
+    width:90%;
+    max-width:900px;
+    margin:20px auto 60px;
+
+    background:rgba(255,255,255,.92);
+
+    border-radius:28px;
+
+    box-shadow:0 15px 45px rgba(70,90,150,.13);
+
+    overflow:hidden;
+}
+
+/* CHAT HEADER */
+
+.chat-header{
+    padding:22px 28px;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    background:linear-gradient(
+        135deg,
+        #6685e8,
+        #8b75df
+    );
+
+    color:white;
+}
+
+.ai-icon{
+    width:55px;
+    height:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.2);
+
+    border-radius:18px;
+
+    font-size:30px;
+}
+
+.chat-header h2{
+    font-size:20px;
+}
+
+.online{
+    font-size:12px;
+    opacity:.9;
+}
+
+/* MESSAGES */
+
+.chat-body{
+    padding:30px;
+    min-height:360px;
+}
+
+.message{
+    display:flex;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.message.user{
+    justify-content:flex-end;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#e9edff;
+
+    flex-shrink:0;
+}
+
+.bubble{
+    max-width:70%;
+
+    padding:14px 18px;
+
+    border-radius:18px;
+
+    background:#f3f5ff;
+
+    color:#4d5870;
+
+    line-height:1.6;
+}
+
+.user .bubble{
+    background:#6685e8;
+    color:white;
+    border-bottom-right-radius:5px;
+}
+
+.message:not(.user) .bubble{
+    border-bottom-left-radius:5px;
+}
+
+/* SUGGESTIONS */
+
+.suggestions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:0 30px 20px;
+}
+
+.suggestion{
+    border:1px solid #dfe5fb;
+    background:white;
+
+    color:#6072a8;
+
+    padding:9px 14px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+.suggestion:hover{
+    background:#eef2ff;
+    border-color:#6685e8;
+}
+
+/* INPUT */
+
+.chat-input{
+    padding:18px 25px;
+
+    border-top:1px solid #edf0f7;
+
+    display:flex;
+    gap:12px;
+}
+
+.chat-input input{
+    flex:1;
+
+    border:1px solid #e0e5f1;
+
+    outline:none;
+
+    padding:14px 18px;
+
+    border-radius:25px;
+
+    font-size:15px;
+}
+
+.chat-input input:focus{
+    border-color:#6685e8;
+}
+
+.send-btn{
+    width:50px;
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #6685e8,
+        #8b75df
+    );
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.send-btn:hover{
+    transform:scale(1.05);
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .chat-body{
+        padding:20px;
+    }
+
+    .bubble{
+        max-width:82%;
+    }
+
+    .suggestions{
+        padding:0 20px 20px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        🎓 Edu<span>Genie</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="subjects.html">Subjects</a>
+
+        <a href="quiz.html">Quiz</a>
+
+        <a href="ai-tutor.html">AI Tutor</a>
+
+        <a href="login.html" class="login">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="badge">
+        🤖 AI-Powered Learning
+    </div>
+
+    <h1>
+        Your Personal <span>AI Tutor</span>
+    </h1>
+
+    <p>
+        Ask questions, understand concepts and learn at your own pace.
+    </p>
+
+</section>
+
+
+<!-- CHAT -->
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+
+    <div class="chat-header">
+
+        <div class="ai-icon">
+            🤖
+        </div>
+
+        <div>
+
+            <h2>
+                EduGenie AI Tutor
+            </h2>
+
+            <div class="online">
+                ● Online • Ready to help
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHAT BODY -->
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="message">
+
+            <div class="avatar">
+                🤖
+            </div>
+
+            <div class="bubble">
+
+                Hi! 👋 I'm your EduGenie AI Tutor.
+
+                <br>
+
+                Ask me anything about your studies.
+                I'll explain it in a simple way! 😊
+
+            </div>
+
+        </div>
+
+
+        <div class="message user">
+
+            <div class="bubble">
+
+                Can you explain Python?
+
+            </div>
+
+        </div>
+
+
+        <div class="message">
+
+            <div class="avatar">
+                🤖
+            </div>
+
+            <div class="bubble">
+
+                Sure! 🐍 Python is a high-level,
+                easy-to-learn programming language
+                used for web development, AI,
+                data science and automation.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUGGESTIONS -->
+
+    <div class="suggestions">
+
+        <button class="suggestion"
+            onclick="askQuestion('Explain Python basics')">
+            🐍 Python Basics
+        </button>
+
+        <button class="suggestion"
+            onclick="askQuestion('What is SQL?')">
+            💾 What is SQL?
+        </button>
+
+        <button class="suggestion"
+            onclick="askQuestion('Explain AI')">
+            🤖 Explain AI
+        </button>
+
+        <button class="suggestion"
+            onclick="askQuestion('Help me prepare for exam')">
+            📚 Exam Help
+        </button>
+
+    </div>
+
+
+    <!-- INPUT -->
+
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Ask your AI Tutor something..."
+            onkeydown="handleEnter(event)"
+        >
+
+        <button
+            class="send-btn"
+            onclick="sendMessage()">
+            ➤
+        </button>
+
+    </div>
+
+</div>
+<script>
+
+async function sendMessage() {
+
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    addUserMessage(message);
+    input.value = "";
+
+    try {
+
+        const response = await fetch("/api/ai-tutor", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                question: message
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            addAIMessage(data.answer);
+        } else {
+            addAIMessage("Sorry, I couldn't generate an answer.");
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+        addAIMessage(
+            "Sorry, something went wrong. Please try again."
+        );
+    }
+}
+
+
+function addUserMessage(text) {
+
+    const chat = document.getElementById("chatBody");
+
+    const message = document.createElement("div");
+    message.className = "message user";
+
+    message.innerHTML = `
+        <div class="bubble">${text}</div>
+    `;
+
+    chat.appendChild(message);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+
+function addAIMessage(text) {
+
+    const chat = document.getElementById("chatBody");
+
+    const message = document.createElement("div");
+    message.className = "message";
+
+    message.innerHTML = `
+        <div class="avatar">🤖</div>
+        <div class="bubble">${text}</div>
+    `;
+
+    chat.appendChild(message);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+
+function askQuestion(question) {
+
+    document.getElementById("userInput").value = question;
+    sendMessage();
+
+}
+
+
+function handleEnter(event) {
+
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+
+}
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
