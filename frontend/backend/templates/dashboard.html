@@ -261,6 +261,16 @@ nav{
         grid-template-columns:1fr;
     }
 }
+
+.nav-links a,
+.action,
+.section-title a {
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -276,13 +286,11 @@ nav{
 
     <div class="nav-links">
 
-        <a href="index.html">Home</a>
-
-        <a href="subjects.html">Subjects</a>
-
-        <a href="quiz.html">Quiz</a>
-
-        <a href="ai-tutor.html">AI Tutor</a>
+        <a href="/">Home</a>
+        <a href="/subjects">Subjects</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/ai-tutor">AI Tutor</a> 
+        <a href="/progress">progress</a>
 
         <a href="#" class="profile">
             👤 Student
@@ -377,7 +385,7 @@ nav{
 
         <h2>📚 Your Learning</h2>
 
-        <a href="subjects.html">
+        <a href="/subjects">
             View All →
         </a>
 
@@ -462,7 +470,7 @@ nav{
 
     <section class="actions">
 
-        <a href="quiz.html" class="action">
+        <a href="/quiz" class="action">
 
             <div class="action-icon">📝</div>
 
@@ -475,7 +483,7 @@ nav{
         </a>
 
 
-        <a href="ai-tutor.html" class="action">
+        <a href="/ai-tutor" class="action">
 
             <div class="action-icon">🤖</div>
 
@@ -488,7 +496,7 @@ nav{
         </a>
 
 
-        <a href="subjects.html" class="action">
+        <a href="/subjects" class="action">
 
             <div class="action-icon">📚</div>
 
@@ -510,7 +518,7 @@ async function loadDashboard() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:5000/progress/1"
+            "/progress/1"
         );
 
         const data = await response.json();
